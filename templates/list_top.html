@@ -1,4 +1,6 @@
-<div id="front">
+<a href="/logout" id="logoutbutton">Log out</a>
+
+{% if object_list %}
     <div id="uploadholder">
         <div id="uploadbutton">
             Upload
@@ -10,5 +12,4 @@
             </form>
         </div>
     </div>
-    <h2>Press 'Upload' to select and  upload files</h2>
-</div>
+{% endif %}

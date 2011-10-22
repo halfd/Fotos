@@ -1,16 +1,16 @@
 <html>
     <head>
         <title>Pixturs</title>
-        <link rel="stylesheet" type="text/css" href="/static/style.css" />
+        <link href="{{ STATIC_URL }}style.css "rel="stylesheet" type="text/css" />
     </head>
     <body>
         <div id="top">
-        {% block 'top'%}
-        {% endblock %}
+          {% block top %}
+          {% endblock %}
         </div>
         <div id="content">
-        {% block 'content' %}
-        {% endblock %}
+          {% block content %}
+          {% endblock %}
         </div>
         <script type="text/javascript">
             var uploadbutton =  document.getElementById('uploadbutton');

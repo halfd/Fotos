@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block top %}
+
+  {% include "list_top.html" %}
+
+{% endblock %}
+
+
+{% block content %}
+
+  {% for picture in object_list %}
+
+    {% include "foto_list.html" %}
+
+  {% empty %}
+
+    {% include "frontpage.html" %}
+
+  {% endfor %}
+
+{% endblock %}
