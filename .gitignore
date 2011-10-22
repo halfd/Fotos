@@ -1,0 +1,6 @@
+*.pyc
+*.swo
+*.swp
+*.db
+*.sql
+media/*

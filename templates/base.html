@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>Pixturs</title>
+        <link rel="stylesheet" type="text/css" href="/static/style.css" />
+    </head>
+    <body>
+        <div id="top">
+        {% block 'top'%}
+        {% endblock %}
+        </div>
+        <div id="content">
+        {% block 'content' %}
+        {% endblock %}
+        </div>
+        <script type="text/javascript">
+            var uploadbutton =  document.getElementById('uploadbutton');
+            var fileinputelement = document.getElementById('fileinputelement');
+
+            fileinputelement.addEventListener('mousedown', function() { tUpload(); }, false);
+            fileinputelement.addEventListener('mouseup', function() { tUpload(); }, false);
+            fileinputelement.addEventListener('mouseout', function() { tUpload(true); }, false);
+
+            function tUpload(turnoff) {
+                if (turnoff) {
+                    uploadbutton.className = '';
+                } else {
+                    uploadbutton.className = (uploadbutton.className == 'active') ? '' : 'active';
+                }
+            }
+
+            function show_uploading(d) {
+                // Set the text of the upload button to reflect the status
+                var dots = '';
+                var d = (d == undefined) ? 0 : (d > 3) ? 0 : d;
+                var space = (d != 0) ? ' ' : '';
+                for (var i=0;i<d;i++) {
+                    dots += '.'
+                }
+                uploadbutton.innerHTML = 'Uploading' + space + dots;
+                window.setTimeout(show_uploading, 800, d+1)
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block 'content' %}
+    <div id="front">
+            <div id="loginholder">
+                <h2><img src="static/lock.svg" width="40"  />
+                Please enter password:<h2>
+                <form method="POST" action="/">
+                    {% csrf_token %}
+                    <input type="hidden" name="username" value="user" />
+                    <input type="password" placeholder="Password" id="passwordinput" name="password" />
+                </form>
+            </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block 'top'%}
+        <a href="/logout" id="logoutbutton">Log out</a>
+{% endblock %}
+
+{% block 'content' %}
+    <div id="front">
+        <div id="uploadholder">
+            <div id="uploadbutton">
+                Upload
+            </div>
+            <div id="formholder">
+                <form method="POST" action="/upload" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="file" id="fileinputelement" name="filelist" value="Upload" multiple="" onchange="show_uploading(); this.parentNode.submit()" />
+                </form>
+            </div>
+        </div>
+        <h2>Press 'Upload' to select and  upload files</h2>
+    </div>
+{% endblock %}
