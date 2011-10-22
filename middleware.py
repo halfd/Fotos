@@ -23,7 +23,7 @@ from django.http import HttpResponseRedirect
 
 class AuthMiddleware(object):
     def process_request(self, request):
-        if request.path != self.require_login_path and request.user.is_anonymous():
+        if request.path != '/login' and request.user.is_anonymous():
             if request.POST:
                 login(request)
                 return HttpResponseRedirect('/')
