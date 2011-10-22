@@ -24,13 +24,13 @@ from apps.upload.models import *
 from apps.upload.views import *
 
 urlpatterns = patterns('',
-    (r'^$', frontpage),
-    (r'^stream', overview),
+    #(r'^$', frontpage),
+    (r'^$', overview),
 
-    (r'^upload', upload),
+    (r'^upload/$', upload),
 
-    (r'^login', login_view),
-    (r'^logout', logout_view),
+    (r'^login$', login_view),
+    (r'^logout$', logout_view),
 
     # Don't use this in a production environment
     (r'^media/(?P<path>.*)$', 'django.views.static.serve',

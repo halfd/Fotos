@@ -17,6 +17,7 @@
     along with Fotos.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
+from django.template import RequestContext, loader, Context
 from django.core.context_processors import csrf
 from django.shortcuts import render_to_response, render, HttpResponseRedirect
 from django.core.files.uploadedfile import UploadedFile
@@ -76,13 +77,17 @@ def overview(request):
     c = {'object_list' : uploads}
     c.update(csrf(request))
 
-    return render_to_response('upload/upload_list.html', c)
+    return render_to_response('list.html',
+                                c,
+                                context_instance=RequestContext(request))
 
 def frontpage(request):
     c = {}
     c.update(csrf(request))
 
-    return render_to_response('frontpage.html', c)
+    return render_to_response('frontpage.html',
+                                c,
+                                context_instance=RequestContext(request))
 
 # Login and logout related views
 def login_view(request):
@@ -92,7 +97,9 @@ def login_view(request):
     c = {}
     c.update(csrf(request))
 
-    return render_to_response('login.html', c)
+    return render_to_response('login.html',
+                                c,
+                                context_instance=RequestContext(request))
 
 def logout_view(request):
     ''' Logout the user
