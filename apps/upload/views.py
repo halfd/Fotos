@@ -70,13 +70,18 @@ def upload(request):
     referer = request.META.get('HTTP_REFERER', '')
     return HttpResponseRedirect(referer)
 
-def overview(request):
+def overview(request, stream=False):
     uploads = Billed.objects.all().order_by('-uploaded')
 
     c = {'object_list' : uploads}
     c.update(csrf(request))
 
-    return render_to_response('upload/upload_list.html', c)
+    if stream:
+        template = 'upload_list.html'
+    else:
+        template = 'overview.html'
+
+    return render_to_response('upload/' + template, c)
 
 def frontpage(request):
     c = {}
@@ -91,6 +96,9 @@ def login_view(request):
 
     c = {}
     c.update(csrf(request))
+
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('/')
 
     return render_to_response('login.html', c)
 

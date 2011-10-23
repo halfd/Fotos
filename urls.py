@@ -25,7 +25,8 @@ from apps.upload.views import *
 
 urlpatterns = patterns('',
     (r'^$', frontpage),
-    (r'^stream', overview),
+    (r'^stream$', overview, {'stream':True}),
+    (r'^overview$', overview),
 
     (r'^upload', upload),
 

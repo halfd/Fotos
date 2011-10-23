@@ -18,6 +18,7 @@
 {% endblock %}
 
 {% block 'content' %}
+    <div id="overview">
     {% for picture in object_list %}
 
         {% ifchanged picture.uploaded.hour %}
@@ -25,11 +26,13 @@
         {% endifchanged %}
 
         <div class="post">
-            <div class="image">
-            {% thumbnail picture.fil.name "680" upscale=False as im %}
+            <div class="thumbimage">
+            {% thumbnail picture.fil.name "180x180" crop="center" upscale=False as im %}
             <img src="/media/{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" />
             {% endthumbnail %}
             </div>
         </div>
     {% endfor %}
+    </div>
 {% endblock %}
+
