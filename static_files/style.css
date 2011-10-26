@@ -209,7 +209,7 @@ body {
 }
 
 #navigation a {
-    padding : 4px 8px 4px 4px;
+    padding : 4px 8px 4px 6px;
     margin : 0 0 0 4px;
     border-radius : 4px;
     text-decoration : none;
@@ -242,6 +242,7 @@ body {
 #logoutbutton {
     background : #d10 !important;
     color : #fff !important;
+    padding : 4px 8px !important;
     opacity : 0.4;
 }
 
