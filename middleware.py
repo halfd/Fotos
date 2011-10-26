@@ -26,6 +26,12 @@ class AuthMiddleware(object):
         if request.user.is_anonymous():
             if request.POST:
                 login(request)
-                return HttpResponseRedirect(request.GET['next'])
+                if 'next' in request.GET:
+                    # If user is redirected to login from an internal page
+                    # redirect there after login
+                    return HttpResponseRedirect(request.GET['next'])
+                else:
+                    # Otherwise default going to root
+                    return HttpResponseRedirect('/')
             elif request.path != '/login':
                 return HttpResponseRedirect('%s?next=%s' % ('/login', request.path))
