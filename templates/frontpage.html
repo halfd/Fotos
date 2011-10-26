@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 
 {% block 'top'%}
-        <a href="/logout" id="logoutbutton">Log out</a>
+    <div id="navigation">
+        <a href="/stream" id="streambutton"><div>&nbsp;</div>Stream</a>
+        <a href="/overview" id="overviewbutton"><div>&nbsp;</div>Overview</a>
+        <a href="/logout" id="logoutbutton" title="Log out of Fotos">Log out</a>
+    </div>
 {% endblock %}
 
 {% block 'content' %}

@@ -1,11 +1,27 @@
 <html>
     <head>
-        <title>Pixturs</title>
+        <title>Fotos</title>
         <link rel="stylesheet" type="text/css" href="/static/style.css" />
     </head>
     <body>
         <div id="top">
         {% block 'top'%}
+            <div id="navigation">
+                <a href="/stream" id="streambutton"><div>&nbsp;</div>Stream</a>
+                <a href="/overview" id="overviewbutton"><div>&nbsp;</div>Overview</a>
+                <a href="/logout" id="logoutbutton" title="Log out of Fotos">Log out</a>
+            </div>
+            <div id="uploadholder">
+                <div id="uploadbutton">
+                    Upload
+                </div>
+                <div id="formholder">
+                    <form method="POST" action="/upload" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="file" id="fileinputelement" name="filelist" value="Upload" multiple="" onchange="show_uploading(); this.parentNode.submit()" />
+                    </form>
+                </div>
+            </div>
         {% endblock %}
         </div>
         <div id="content">

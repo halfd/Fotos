@@ -36,7 +36,7 @@ body {
 
 #front #uploadholder {
     position : relative;
-    left    :   203px;
+    left    :   173px;
     width : 490px;
     height : 100px;
 }
@@ -131,7 +131,7 @@ body {
 }
 
 #content {
-    width : 900px;
+    width : 680px;
     margin : 50px auto;
 }
 
@@ -202,16 +202,47 @@ body {
     border : 2px #7df solid;
 }
 
-#logoutbutton {
+#navigation {
     position : fixed;
-    top : 10px;
+    top : 18px;
     right : 10px;
-    background : #d10;
-    padding : 4px 8px;
+}
+
+#navigation a {
+    padding : 4px 8px 4px 4px;
+    margin : 0 0 0 4px;
     border-radius : 4px;
-    opacity : 0.4;
     text-decoration : none;
-    color : #fff;
+    color : #666;
+    background-color : #e4e4e4;
+    overflow : hidden;
+}
+
+#streambutton div,
+#overviewbutton div {
+    display : inline-block;
+    width : 22px;
+    height : 18px;
+    background-image : url('/static/icons.png');
+    background-repeat : no-repeat;
+    background-position : 0 50%;
+}
+
+#streambutton {
+}
+
+#overviewbutton div {
+    background-position : -20px 50%;
+}
+
+#navigation a:hover {
+    background-color : #d4d4d4;
+}
+
+#logoutbutton {
+    background : #d10 !important;
+    color : #fff !important;
+    opacity : 0.4;
 }
 
 #logoutbutton:hover {
