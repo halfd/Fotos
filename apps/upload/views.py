@@ -17,6 +17,7 @@
     along with Fotos.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
+from django.template import RequestContext, loader, Context
 from django.core.context_processors import csrf
 from django.shortcuts import render_to_response, render, HttpResponseRedirect
 from django.core.files.uploadedfile import UploadedFile

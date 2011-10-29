@@ -1,0 +1,13 @@
+{% load thumbnail %}
+
+{% ifchanged picture.uploaded.hour %}
+  <div class="dateholder">{{ picture.uploaded|date:"j. F Y" }}</div>
+{% endifchanged %}
+
+<div class="post">
+  <div class="image">
+    {% thumbnail picture.fil.name "680" upscale=False as im %}
+    <img src="/media/{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" />
+    {% endthumbnail %}
+  </div>
+</div>

@@ -28,10 +28,10 @@ urlpatterns = patterns('',
     (r'^stream$', overview, {'stream':True}),
     (r'^overview$', overview),
 
-    (r'^upload', upload),
+    (r'^upload/$', upload),
 
-    (r'^login', login_view),
-    (r'^logout', logout_view),
+    (r'^login$', login_view),
+    (r'^logout$', logout_view),
 
     # Don't use this in a production environment
     (r'^media/(?P<path>.*)$', 'django.views.static.serve',
