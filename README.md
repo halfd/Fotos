@@ -25,7 +25,6 @@ Do the following to setup:
 1. Setup the database with `./manage syncdb`. Create a user named 'user' with the password you want people to access the site with.
 1. git doesn't track directories so you have to manually do `mkdir media/`
 1. Run locally with `./manage runserver` to see that everything runs smoothly.
-1. PROFIT!
 
 
 License
