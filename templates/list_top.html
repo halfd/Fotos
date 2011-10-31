@@ -6,7 +6,7 @@
             Upload
         </div>
         <div id="formholder">
-            <form method="POST" action="/upload" enctype="multipart/form-data">
+            <form method="POST" action="/upload/" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="file" id="fileinputelement" name="filelist" value="Upload" multiple="" onchange="show_uploading(); this.parentNode.submit()" />
             </form>
