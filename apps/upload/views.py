@@ -75,7 +75,7 @@ def upload(request):
 def overview(request, stream=False):
     all_uploads = Billed.objects.all().order_by('-uploaded')
 
-    paginator = Paginator(all_uploads, 5)
+    paginator = Paginator(all_uploads, settings.POSTS_PER_PAGE)
     first_page = paginator.page(1)
 
     c = {
@@ -99,7 +99,7 @@ def ajax_posts(request, page):
 
     all_uploads = Billed.objects.all().order_by('-uploaded')
 
-    paginator = Paginator(all_uploads, 5)
+    paginator = Paginator(all_uploads, settings.POSTS_PER_PAGE)
     try:
         page_obj = paginator.page(page)
     except InvalidPage:
