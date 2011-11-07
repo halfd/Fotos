@@ -28,7 +28,10 @@
           {% block 'content' %}
           {% endblock %}
         </div>
+          {% block 'infiniscroll' %}
+          {% endblock %}
         <script type="text/javascript">
+            // Uploading functions
             var uploadbutton =  document.getElementById('uploadbutton');
             var fileinputelement = document.getElementById('fileinputelement');
 
@@ -56,5 +59,6 @@
                 window.setTimeout(show_uploading, 800, d+1)
             }
         </script>
+        {% block 'extrascript' %}{% endblock %}
     </body>
 </html>

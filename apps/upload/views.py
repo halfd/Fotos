@@ -22,6 +22,7 @@ from django.core.context_processors import csrf
 from django.shortcuts import render_to_response, render, HttpResponseRedirect
 from django.core.files.uploadedfile import UploadedFile
 from django.contrib.auth import logout
+from django.core.paginator import Paginator
 
 from models import *
 
@@ -72,17 +73,48 @@ def upload(request):
     return HttpResponseRedirect(referer)
 
 def overview(request, stream=False):
-    uploads = Billed.objects.all().order_by('-uploaded')
+    all_uploads = Billed.objects.all().order_by('-uploaded')
 
-    c = {'object_list' : uploads}
-    c.update(csrf(request))
+    paginator = Paginator(all_uploads, settings.POSTS_PER_PAGE)
+    first_page = paginator.page(1)
 
     if stream:
         template = 'upload_list.html'
+        pagetype = 'list'
     else:
         template = 'overview.html'
+        pagetype = 'overview'
+
+    c = {
+        'object_list' : first_page.object_list,
+        'page': first_page,
+        'paginator' : paginator,
+        'pagetype' : pagetype
+    }
+
+    c.update(csrf(request))
 
     return render_to_response('upload/' + template, c)
+
+def ajax_posts(request, pagetype, page):
+    ''' Returns given page objects in json
+    '''
+
+    all_uploads = Billed.objects.all().order_by('-uploaded')
+
+    paginator = Paginator(all_uploads, settings.POSTS_PER_PAGE)
+    try:
+        page_obj = paginator.page(page)
+    except InvalidPage:
+        # Return 404 if the page doesn't exist
+        raise Http404
+
+    c = {
+        'object_list' : page_obj.object_list,
+        'page' : page_obj
+    }
+
+    return render_to_response('upload/ajax_posts_' + pagetype + '.html', c)
 
 def frontpage(request):
     c = {}
