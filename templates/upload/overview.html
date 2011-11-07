@@ -5,11 +5,6 @@
 {% block 'content' %}
     <div id="overview">
     {% for picture in object_list %}
-
-        {% ifchanged picture.uploaded.hour %}
-        <div class="dateholder">{{ picture.uploaded|date:"j. F Y" }}</div>
-        {% endifchanged %}
-
         <div class="post">
             <div class="thumbimage">
             {% thumbnail picture.fil.name "180x180" crop="center" upscale=False as im %}
@@ -19,5 +14,13 @@
         </div>
     {% endfor %}
     </div>
+
 {% endblock %}
 
+{% block 'infiniscroll' %}
+    <div id="infiniscroll">Fetching more posts</div>
+{% endblock %}
+
+{% block 'extrascript' %}
+    {% include "upload/common.html" %}
+{% endblock %}

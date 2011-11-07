@@ -18,3 +18,11 @@
         </div>
     {% endfor %}
 {% endblock %}
+
+{% block 'infiniscroll' %}
+    <div id="infiniscroll">Fetching more posts</div>
+{% endblock %}
+
+{% block 'extrascript' %}
+    {% include "upload/common.html" %}
+{% endblock %}
