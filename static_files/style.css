@@ -249,3 +249,14 @@ body {
 #logoutbutton:hover {
     opacity : 1;
 }
+
+#infiniscroll {
+    padding : 10px 10px 7px 10px;
+    margin : 20px auto;
+    width : 300px;
+    background : #f2f2f2;
+    border : 1px #aaa solid;
+    border-radius : 5px;
+    color : #444;
+    text-align : center;
+}

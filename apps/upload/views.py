@@ -22,6 +22,7 @@ from django.core.context_processors import csrf
 from django.shortcuts import render_to_response, render, HttpResponseRedirect
 from django.core.files.uploadedfile import UploadedFile
 from django.contrib.auth import logout
+from django.core.paginator import Paginator
 
 from models import *
 
@@ -72,9 +73,17 @@ def upload(request):
     return HttpResponseRedirect(referer)
 
 def overview(request, stream=False):
-    uploads = Billed.objects.all().order_by('-uploaded')
+    all_uploads = Billed.objects.all().order_by('-uploaded')
 
-    c = {'object_list' : uploads}
+    paginator = Paginator(all_uploads, 5)
+    first_page = paginator.page(1)
+
+    c = {
+        'object_list' : first_page.object_list,
+        'page': first_page,
+        'paginator' : paginator
+    }
+
     c.update(csrf(request))
 
     if stream:
@@ -83,6 +92,26 @@ def overview(request, stream=False):
         template = 'overview.html'
 
     return render_to_response('upload/' + template, c)
+
+def ajax_posts(request, page):
+    ''' Returns given page objects in json
+    '''
+
+    all_uploads = Billed.objects.all().order_by('-uploaded')
+
+    paginator = Paginator(all_uploads, 5)
+    try:
+        page_obj = paginator.page(page)
+    except InvalidPage:
+        # Return 404 if the page doesn't exist
+        raise Http404
+
+    c = {
+        'object_list' : page_obj.object_list,
+        'page' : page_obj
+    }
+
+    return render_to_response('upload/ajax_posts.html', c)
 
 def frontpage(request):
     c = {}
