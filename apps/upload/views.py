@@ -78,22 +78,25 @@ def overview(request, stream=False):
     paginator = Paginator(all_uploads, settings.POSTS_PER_PAGE)
     first_page = paginator.page(1)
 
+    if stream:
+        template = 'upload_list.html'
+        pagetype = 'list'
+    else:
+        template = 'overview.html'
+        pagetype = 'overview'
+
     c = {
         'object_list' : first_page.object_list,
         'page': first_page,
-        'paginator' : paginator
+        'paginator' : paginator,
+        'pagetype' : pagetype
     }
 
     c.update(csrf(request))
 
-    if stream:
-        template = 'upload_list.html'
-    else:
-        template = 'overview.html'
-
     return render_to_response('upload/' + template, c)
 
-def ajax_posts(request, page):
+def ajax_posts(request, pagetype, page):
     ''' Returns given page objects in json
     '''
 
@@ -111,7 +114,7 @@ def ajax_posts(request, page):
         'page' : page_obj
     }
 
-    return render_to_response('upload/ajax_posts.html', c)
+    return render_to_response('upload/ajax_posts_' + pagetype + '.html', c)
 
 def frontpage(request):
     c = {}

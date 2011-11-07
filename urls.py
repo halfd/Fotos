@@ -28,7 +28,7 @@ urlpatterns = patterns('',
     (r'^stream$', overview, {'stream':True}),
     (r'^overview$', overview),
 
-    (r'^ajaxpage/(?P<page>[0-9]+)/', ajax_posts),
+    (r'^ajaxpage/(?P<pagetype>[a-z]+)/(?P<page>[0-9]+)/', ajax_posts),
 
     (r'^upload/$', upload),
 
